@@ -1,4 +1,5 @@
 import * as React from 'react'
+import '../styles/game-card.scss'
 
 export interface GameCardProps {
   name: string
@@ -9,9 +10,8 @@ export default class GameCard extends React.Component<GameCardProps, any> {
 
   render () {
     return (
-      <div>
-        <img src={this.props.image_url} />
-        <span>{this.props.name}</span>
+      <div className={'game-card'}>
+        <img src={this.props.image_url} className={'game-card--image'}/>
       </div>
     )
   }

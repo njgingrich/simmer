@@ -1,4 +1,5 @@
 import * as React from 'react'
+import '../styles/profile.scss'
 
 export interface ProfileProps {
   name: string
@@ -9,9 +10,9 @@ export default class Profile extends React.Component<ProfileProps, any> {
 
   render () {
     return (
-      <div>
-        <img src={this.props.avatar_url} width='64' height='64' />
-        <span>{this.props.name}</span>
+      <div className={'profile'}>
+        <img src={this.props.avatar_url} className={'profile--avatar'} />
+        <span className={'profile--name'}>{this.props.name}</span>
       </div>
     )
   }
