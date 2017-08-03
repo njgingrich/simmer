@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.0.1",
+    "@types/isomorphic-fetch": "^0.0.34",
     "@types/mocha": "^2.2.41",
     "@types/react": "^16.0.0",
     "@types/react-dom": "^15.5.1",
@@ -48,5 +49,8 @@
     "webpack": "^3.3.0",
     "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "2.5.1"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1"
   }
 }
