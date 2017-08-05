@@ -42,10 +42,20 @@ export interface RecentGame {
 export default class App extends React.Component<AppProps, any> {
   render () {
     return (
-      <div>
-        <Profile id={this.props.user_id} />
-        <GameList id={this.props.user_id} />
-        {/*<GameCard id={'570'} />*/}
+      <div className={'container'}>
+        <div className={'card'}>
+          <div className={'card-body'}>
+            <Profile id={this.props.user_id} />
+          </div>
+        </div>
+        <div className={'card'}>
+          <div className={'card-header'}>
+            <h3>Recent Games</h3>
+          </div>
+          <div className={'card-body'}>
+            <GameList id={this.props.user_id} />
+          </div>
+        </div>
       </div>
     )
   }

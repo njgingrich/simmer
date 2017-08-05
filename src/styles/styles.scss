@@ -1,9 +1,36 @@
 @import 'variables';
 
-/*
-* PROFILE
-*/
-
 html {
+  box-sizing: border-box;
   color: $black;
+  background-color: $light-gray;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.container {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  background-color: $white;
+  border: 1px solid rgba(117, 117, 117, 0.2);
+  border-radius: 0.1rem;
+  box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-header {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
 }

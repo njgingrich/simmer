@@ -1,5 +1,11 @@
 @import 'variables';
 
+.game-card {
+  width: 300px;
+  margin: 10px;
+}
+
 .game-card--image {
-  width: 230px;
+  width: 300px;
+  height: (300 / 460) * 215px;
 }

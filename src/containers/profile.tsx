@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { fetchProfile } from '../actions/profile'
+import * as moment from 'moment'
 
+import { fetchProfile } from '../actions/profile'
 import Profile, { ProfileProps, ProfileOwnProps } from '../components/profile'
 import { State } from '../components/app'
 
@@ -14,11 +15,16 @@ class Container extends React.Component<any, any> {
   render () {
     return (
       <Profile isFetching={this.props.isFetching}
+               last_logoff={this.props.last_logoff}
                name={this.props.name}
                profile_url={this.props.profile_url}
                avatar_url={this.props.avatar_url} />
     )
   }
+}
+
+function convertToDate (time: string) {
+  return moment(time, 'X').fromNow()
 }
 
 const mapStateToProps = (state: State, ownProps: ProfileOwnProps) => {
@@ -27,6 +33,7 @@ const mapStateToProps = (state: State, ownProps: ProfileOwnProps) => {
   if (profile === undefined) {
     profile = {
       isFetching: true,
+      last_logoff: -1,
       name: '',
       profile_url: '',
       avatar_url: '',
@@ -35,6 +42,7 @@ const mapStateToProps = (state: State, ownProps: ProfileOwnProps) => {
 
   return {
     isFetching: profile.isFetching,
+    last_logoff: convertToDate(profile.last_logoff).toString(),
     name: profile.name,
     profile_url: profile.profile_url,
     avatar_url: profile.avatar_url,

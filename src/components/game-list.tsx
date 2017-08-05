@@ -12,9 +12,15 @@ export interface GameListOwnProps {
 }
 
 const GameList = ({ids}: GameListProps) => {
-  const cards = ids.map(id => <GameCard id={id} />)
+  const cards = ids.map(id => {
+    return(
+      <GameCard id={id} key={id}/>
+    )
+  })
   return (
-    <div>{cards}</div>
+    <div className={'game-list'}>
+      {cards}
+    </div>
   )
 }
 
