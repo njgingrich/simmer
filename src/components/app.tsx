@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import GameCard from '../containers/game-card'
-import Profile from './profile'
+import Profile from '../containers/profile'
 
 export interface AppProps {
   name: string
@@ -10,6 +10,7 @@ export interface AppProps {
 export interface State {
   loadingGameInfo: string
   gameInfo: GameInfo[]
+  profiles: Profile[]
 }
 
 export interface GameInfo {
@@ -22,13 +23,17 @@ export interface GameInfo {
   screenshots: string[]
 }
 
-export default class App extends React.Component<AppProps, any> {
+export interface Profile {
+  name: string
+  avatar_url: string
+  profile_url: string
+}
 
+export default class App extends React.Component<AppProps, any> {
   render () {
     return (
       <div>
-        <Profile name={'syzygy'}
-                 avatar_url={'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/91/91c95d85d26332c3528ed0a0a07428c134c60c1f_full.jpg'} />
+        <Profile id={'76561198042101272'} />
         <GameCard id={'570'} />
       </div>
     )

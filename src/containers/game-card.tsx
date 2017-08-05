@@ -1,19 +1,18 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { fetchGameInfo } from '../actions'
+import { fetchGameInfo } from '../actions/game-info'
 
 import GameCard, { GameCardProps, GameCardOwnProps } from '../components/game-card'
 import { State } from '../components/app'
 
 class Container extends React.Component<any, any> {
   componentDidMount () {
-    console.log('mounted component')
     const { dispatch, id } = this.props
     dispatch(fetchGameInfo(id))
   }
 
   render () {
-    console.log('rendering container w/ props:', this.props)
+    console.log('rendering game-card container w/ props:', this.props)
     return (
       <GameCard description={this.props.description}
                 image_url={this.props.image_url}
@@ -34,7 +33,6 @@ const mapStateToProps = (state: State, ownProps: GameCardOwnProps) => {
       screenshots: []
     }
   }
-  console.log('game:', game)
 
   return {
     name: game.name,

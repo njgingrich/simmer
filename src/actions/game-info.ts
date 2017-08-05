@@ -1,7 +1,4 @@
 import * as fetch from 'isomorphic-fetch'
-import { Action } from 'redux'
-
-export type Dispatch = (action: Action) => void
 
 export const LOAD_GAME_INFO = 'LOAD_GAME_INFO'
 export const RELOAD_GAME_INFO = 'RELOAD_GAME_INFO'

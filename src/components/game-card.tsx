@@ -13,7 +13,6 @@ export interface GameCardOwnProps {
 }
 
 const GameCard = ({description, image_url, name, screenshots}: GameCardProps) => {
-  console.log('rendering component')
   return (
     <div className={'game-card'}>
       <img src={image_url} className={'game-card--image'}/>
