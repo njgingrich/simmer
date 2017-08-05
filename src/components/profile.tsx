@@ -12,8 +12,6 @@ export interface ProfileOwnProps {
 }
 
 const Profile = ({avatar_url, name, profile_url}: ProfileProps) => {
-  console.log('rendering profile component')
-
   return (
     <div className={'profile'}>
       <img src={avatar_url} className={'profile--avatar'} />

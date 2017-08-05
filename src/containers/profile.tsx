@@ -12,7 +12,6 @@ class Container extends React.Component<any, any> {
   }
 
   render () {
-    console.log('rendering profile container w/ props:', this.props)
     return (
       <Profile name={this.props.name}
                profile_url={this.props.profile_url}
@@ -22,7 +21,6 @@ class Container extends React.Component<any, any> {
 }
 
 const mapStateToProps = (state: State, ownProps: ProfileOwnProps) => {
-  console.log('state:', state)
   const { profiles } = state
   let profile = profiles[ownProps.id]
   if (profile === undefined) {
@@ -32,7 +30,6 @@ const mapStateToProps = (state: State, ownProps: ProfileOwnProps) => {
       avatar_url: '',
     }
   }
-  console.log('profile:', profile)
 
   return {
     name: profile.name,

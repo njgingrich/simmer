@@ -20,7 +20,6 @@ function requestProfile (id: string) {
 }
 
 function receiveProfile (id: string, json: any) {
-  console.log('received json:', json)
   return {
     type: RECEIVE_PROFILE,
     id,

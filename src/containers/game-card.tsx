@@ -12,7 +12,6 @@ class Container extends React.Component<any, any> {
   }
 
   render () {
-    console.log('rendering game-card container w/ props:', this.props)
     return (
       <GameCard description={this.props.description}
                 image_url={this.props.image_url}
