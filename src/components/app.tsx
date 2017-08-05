@@ -2,15 +2,19 @@ import * as React from 'react'
 
 import GameCard from '../containers/game-card'
 import Profile from '../containers/profile'
+import GameList from '../containers/game-list'
 
 export interface AppProps {
   name: string
+  user_id: string
 }
 
 export interface State {
   loadingGameInfo: string
   gameInfo: GameInfo[]
   profiles: Profile[]
+  recentGameIds: string[]
+  recentGames: RecentGame[]
 }
 
 export interface GameInfo {
@@ -29,12 +33,19 @@ export interface Profile {
   profile_url: string
 }
 
+export interface RecentGame {
+  name: string
+  two_weeks: number
+  forever: number
+}
+
 export default class App extends React.Component<AppProps, any> {
   render () {
     return (
       <div>
-        <Profile id={'76561198042101272'} />
-        <GameCard id={'570'} />
+        <Profile id={this.props.user_id} />
+        <GameList id={this.props.user_id} />
+        {/*<GameCard id={'570'} />*/}
       </div>
     )
   }

@@ -13,7 +13,8 @@ class Container extends React.Component<any, any> {
 
   render () {
     return (
-      <Profile name={this.props.name}
+      <Profile isFetching={this.props.isFetching}
+               name={this.props.name}
                profile_url={this.props.profile_url}
                avatar_url={this.props.avatar_url} />
     )
@@ -25,6 +26,7 @@ const mapStateToProps = (state: State, ownProps: ProfileOwnProps) => {
   let profile = profiles[ownProps.id]
   if (profile === undefined) {
     profile = {
+      isFetching: true,
       name: '',
       profile_url: '',
       avatar_url: '',
@@ -32,6 +34,7 @@ const mapStateToProps = (state: State, ownProps: ProfileOwnProps) => {
   }
 
   return {
+    isFetching: profile.isFetching,
     name: profile.name,
     profile_url: profile.profile_url,
     avatar_url: profile.avatar_url,
