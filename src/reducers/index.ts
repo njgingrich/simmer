@@ -10,6 +10,8 @@ function loadingGameInfo (state = '570', action: any) {
   switch (action.type) {
     case LOAD_GAME_INFO:
       return action.id
+    case RECEIVE_GAME_INFO:
+      return -1
     default:
       return state
   }
@@ -19,7 +21,10 @@ function info (
   state = {
     isFetching: false,
     didInvalidate: false,
-    games: []
+    name: '',
+    image: '',
+    description: '',
+    screenshots: [],
   },
   action: any) {
 
@@ -37,7 +42,10 @@ function info (
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        games: action.info,
+        name: action.name,
+        image: action.image,
+        description: action.description,
+        screenshots: action.screenshots,
         last_updated: action.received_at,
       })
     default:
