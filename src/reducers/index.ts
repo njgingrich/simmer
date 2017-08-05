@@ -10,8 +10,8 @@ function loadingGameInfo (state = '570', action: any) {
   switch (action.type) {
     case LOAD_GAME_INFO:
       return action.id
-    case RECEIVE_GAME_INFO:
-      return -1
+    // case RECEIVE_GAME_INFO:
+      // return -1
     default:
       return state
   }

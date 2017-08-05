@@ -11,6 +11,21 @@ import './styles/styles.scss'
 
 let store = createStore(reducer, applyMiddleware(thunkMiddleware))
 
+export interface State {
+  loadingGameInfo: string
+  gameInfo: GameInfo[]
+}
+
+export interface GameInfo {
+  didInvalidate: boolean
+  isFetching: boolean
+  last_updated: Date
+  name: string
+  image: string
+  description: string
+  screenshots: string[]
+}
+
 render(
   <Provider store={store}>
     <App name={'Simmer'} />

@@ -2,18 +2,17 @@ import * as React from 'react'
 import '../styles/profile.scss'
 
 export interface ProfileProps {
-  name: string
   avatar_url: string
+  name: string
 }
 
-export default class Profile extends React.Component<ProfileProps, any> {
-
-  render () {
-    return (
-      <div className={'profile'}>
-        <img src={this.props.avatar_url} className={'profile--avatar'} />
-        <span className={'profile--name'}>{this.props.name}</span>
-      </div>
-    )
-  }
+const Profile = ({avatar_url, name}: ProfileProps) => {
+  return (
+    <div className={'profile'}>
+      <img src={avatar_url} className={'profile--avatar'} />
+      <span className={'profile--name'}>{name}</span>
+    </div>
+  )
 }
+
+export default Profile
