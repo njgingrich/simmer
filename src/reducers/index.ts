@@ -10,8 +10,8 @@ function loadingGameInfo (state = '570', action: any) {
   switch (action.type) {
     case LOAD_GAME_INFO:
       return action.id
-    // case RECEIVE_GAME_INFO:
-      // return -1
+    case RECEIVE_GAME_INFO:
+      return -1
     default:
       return state
   }
@@ -22,9 +22,10 @@ function info (
     isFetching: false,
     didInvalidate: false,
     name: '',
-    image: '',
+    image_url: '',
     description: '',
     screenshots: [],
+    last_updated: '',
   },
   action: any) {
 
@@ -43,7 +44,7 @@ function info (
         isFetching: false,
         didInvalidate: false,
         name: action.name,
-        image: action.image,
+        image_url: action.image,
         description: action.description,
         screenshots: action.screenshots,
         last_updated: action.received_at,

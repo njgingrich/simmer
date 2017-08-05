@@ -2,45 +2,40 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { fetchGameInfo } from '../actions'
 
-import { GameCard, GameCardProps } from '../components/game-card'
-import { State, GameInfo } from '../index'
+import GameCard, { GameCardProps, GameCardOwnProps } from '../components/game-card'
+import { State } from '../components/app'
 
-export interface GameCardContainerProps {
-  description: string
-  id: string
-  image_url: string
-  name: string
-  screenshots: string[]
-}
-
-class GameCardContainer extends React.Component<GameCardContainerProps, {}> {
+class Container extends React.Component<any, any> {
   componentDidMount () {
-    const { dispatch, id }: any = this.props
+    console.log('mounted component')
+    const { dispatch, id } = this.props
     dispatch(fetchGameInfo(id))
   }
 
-  componentDidUpdate (prevProps: any) {
-    if (this.props.id !== prevProps.id) {
-      const { dispatch, id }: any = this.props
-      dispatch(fetchGameInfo(id))
-    }
-  }
-
   render () {
+    console.log('rendering container w/ props:', this.props)
     return (
-      <div>
-        <GameCard image_url={this.props.image_url}
-                  description={this.props.image_url}
-                  name={this.props.image_url}
-                  screenshots={this.props.screenshots} />
-      </div>
+      <GameCard description={this.props.description}
+                image_url={this.props.image_url}
+                name={this.props.name}
+                screenshots={this.props.screenshots} />
     )
   }
 }
 
-const mapStateToProps = (state: State): GameCardProps => {
-  const { loadingGameInfo, gameInfo } = state
-  const game = gameInfo['570']
+const mapStateToProps = (state: State, ownProps: GameCardOwnProps) => {
+  const { gameInfo } = state
+  let game = gameInfo[ownProps.id]
+  if (game === undefined) {
+    game = {
+      name: '',
+      image_url: '',
+      description: '',
+      screenshots: []
+    }
+  }
+  console.log('game:', game)
+
   return {
     name: game.name,
     image_url: game.image_url,
@@ -49,6 +44,6 @@ const mapStateToProps = (state: State): GameCardProps => {
   }
 }
 
-export default connect<GameCardProps, void, void>(
+export default connect<GameCardProps, void, GameCardOwnProps>(
   mapStateToProps,
-)(GameCard)
+)(Container)

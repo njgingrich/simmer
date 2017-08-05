@@ -8,10 +8,17 @@ export interface GameCardProps {
   screenshots: string[]
 }
 
-export const GameCard = ({description, image_url, name, screenshots}: GameCardProps) => {
+export interface GameCardOwnProps {
+  id: string
+}
+
+const GameCard = ({description, image_url, name, screenshots}: GameCardProps) => {
+  console.log('rendering component')
   return (
     <div className={'game-card'}>
       <img src={image_url} className={'game-card--image'}/>
     </div>
   )
 }
+
+export default GameCard

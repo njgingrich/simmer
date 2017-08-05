@@ -11,38 +11,9 @@ import './styles/styles.scss'
 
 let store = createStore(reducer, applyMiddleware(thunkMiddleware))
 
-export interface State {
-  loadingGameInfo: string
-  gameInfo: GameInfo[]
-}
-
-export interface GameInfo {
-  didInvalidate: boolean
-  isFetching: boolean
-  last_updated: Date
-  name: string
-  image: string
-  description: string
-  screenshots: string[]
-}
-
 render(
   <Provider store={store}>
     <App name={'Simmer'} />
   </Provider>,
   document.getElementById('app')
 )
-
-import { fetchGameInfo } from './actions'
-console.log(store.getState())
-
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-)
-
-console.log(store.dispatch(fetchGameInfo('570')))
-setTimeout(() => {
-  console.log('store:', store.getState())
-}, 2000)
-
-unsubscribe()
