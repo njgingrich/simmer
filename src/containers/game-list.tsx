@@ -21,6 +21,12 @@ class Container extends React.Component<any, any> {
 const mapStateToProps = (state: State, ownProps: GameListOwnProps) => {
   const { recentGameIds } = state
   let ids = recentGameIds['list'] || []
+  ids = ids.map((id: any) => {
+    return {
+      app_id: id,
+      profile_id: ownProps.id
+    }
+  })
   return {
     ids
   }

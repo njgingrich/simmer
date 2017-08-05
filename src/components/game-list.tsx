@@ -4,7 +4,7 @@ import '../styles/game-list.scss'
 import GameCard from '../containers/game-card'
 
 export interface GameListProps {
-  ids: string[]
+  ids: {app_id: string, profile_id: string}[]
 }
 
 export interface GameListOwnProps {
@@ -14,7 +14,7 @@ export interface GameListOwnProps {
 const GameList = ({ids}: GameListProps) => {
   const cards = ids.map(id => {
     return(
-      <GameCard id={id} key={id}/>
+      <GameCard app_id={id.app_id} profile_id={id.profile_id} key={id.app_id} />
     )
   })
   return (

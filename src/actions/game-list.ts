@@ -19,13 +19,13 @@ function requestgameList (id: string) {
 }
 
 function receiveGameList (id: string, json: any) {
-  let list: any = []
+  let list: any = {}
   json.forEach((item: any) => {
-    list.push({
+    list[item.app_id] = {
       name: item.name,
       two_weeks: item.two_weeks,
       forever: item.forever,
-    })
+    }
   })
   return {
     type: RECEIVE_GAME_LIST,

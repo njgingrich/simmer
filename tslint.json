@@ -8,6 +8,9 @@
         "no-multi-spaces": false,
         "trailing-comma": [
             true
+        ],
+        "variable-name": [
+            false
         ]
     },
     "rulesDirectory": []

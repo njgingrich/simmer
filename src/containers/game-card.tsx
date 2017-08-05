@@ -7,8 +7,8 @@ import { State } from '../components/app'
 
 class Container extends React.Component<any, any> {
   componentDidMount () {
-    const { dispatch, id } = this.props
-    dispatch(fetchGameInfo(id))
+    const { dispatch, app_id } = this.props
+    dispatch(fetchGameInfo(app_id))
   }
 
   render () {
@@ -16,14 +16,24 @@ class Container extends React.Component<any, any> {
       <GameCard description={this.props.description}
                 image_url={this.props.image_url}
                 name={this.props.name}
+                playtime={this.props.playtime}
                 screenshots={this.props.screenshots} />
     )
   }
 }
 
-const mapStateToProps = (state: State, ownProps: GameCardOwnProps) => {
-  const { gameInfo } = state
-  let game = gameInfo[ownProps.id]
+function convertTime (time: number) {
+  if (time === -1) return ''
+
+  const minutes = time % 60
+  const hours = ((time - minutes) / 60)
+  return `${hours}h ` + (minutes > 0 ? `${minutes}m` : ``)
+}
+
+const mapStateToProps = (state: State, ownProps: GameCardOwnProps): GameCardProps => {
+  const { gameInfo, recentGames } = state
+  let game = gameInfo[ownProps.app_id]
+  let recentInfo = recentGames[ownProps.profile_id]
   if (game === undefined) {
     game = {
       name: '',
@@ -32,9 +42,22 @@ const mapStateToProps = (state: State, ownProps: GameCardOwnProps) => {
       screenshots: []
     }
   }
+  let two_weeks = (recentInfo === undefined ||
+                     recentInfo.list[ownProps.app_id] === undefined) ? -1
+                     : recentInfo.list[ownProps.app_id].two_weeks
+  let forever = (recentInfo === undefined ||
+                   recentInfo.list[ownProps.app_id] === undefined) ? -1
+                   : recentInfo.list[ownProps.app_id].forever
+
+  two_weeks = convertTime(two_weeks)
+  forever = convertTime(forever)
 
   return {
     name: game.name,
+    playtime: {
+      two_weeks,
+      forever,
+    },
     image_url: game.image_url,
     description: game.description,
     screenshots: game.screenshots,
