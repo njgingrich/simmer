@@ -13,7 +13,7 @@ export interface ProfileOwnProps {
   id: string
 }
 
-const Profile = ({avatar_url, isFetching, last_logoff, name, profile_url}: ProfileProps) => {
+const Profile = ({ avatar_url, isFetching, last_logoff, name, profile_url }: ProfileProps) => {
   let avatar = null
   if (isFetching) {
     avatar = <div className={'profile--avatar'} />
@@ -25,8 +25,12 @@ const Profile = ({avatar_url, isFetching, last_logoff, name, profile_url}: Profi
     <div className={'profile'}>
       {avatar}
       <div className={'profile--info'}>
-        <span className={'profile--name'}>{name}</span>
-        <span className={'profile--last-logoff'}>{last_logoff}</span>
+        <span className={'profile--name'}>
+          {name}
+        </span>
+        <span className={'profile--last-logoff'}>
+          {last_logoff}
+        </span>
       </div>
     </div>
   )

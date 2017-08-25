@@ -6,27 +6,29 @@ import GameCard, { GameCardProps, GameCardOwnProps } from '../components/game-ca
 import { State } from '../components/app'
 
 class Container extends React.Component<any, any> {
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch, app_id } = this.props
     dispatch(fetchGameInfo(app_id))
   }
 
-  render () {
+  render() {
     return (
-      <GameCard description={this.props.description}
-                image_url={this.props.image_url}
-                name={this.props.name}
-                playtime={this.props.playtime}
-                screenshots={this.props.screenshots} />
+      <GameCard
+        description={this.props.description}
+        image_url={this.props.image_url}
+        name={this.props.name}
+        playtime={this.props.playtime}
+        screenshots={this.props.screenshots}
+      />
     )
   }
 }
 
-function convertTime (time: number) {
+function convertTime(time: number) {
   if (time === -1) return ''
 
   const minutes = time % 60
-  const hours = ((time - minutes) / 60)
+  const hours = (time - minutes) / 60
   return `${hours}h ` + (minutes > 0 ? `${minutes}m` : ``)
 }
 
@@ -39,15 +41,17 @@ const mapStateToProps = (state: State, ownProps: GameCardOwnProps): GameCardProp
       name: '',
       image_url: '',
       description: '',
-      screenshots: []
+      screenshots: [],
     }
   }
-  let two_weeks = (recentInfo === undefined ||
-                     recentInfo.list[ownProps.app_id] === undefined) ? -1
-                     : recentInfo.list[ownProps.app_id].two_weeks
-  let forever = (recentInfo === undefined ||
-                   recentInfo.list[ownProps.app_id] === undefined) ? -1
-                   : recentInfo.list[ownProps.app_id].forever
+  let two_weeks =
+    recentInfo === undefined || recentInfo.list[ownProps.app_id] === undefined
+      ? -1
+      : recentInfo.list[ownProps.app_id].two_weeks
+  let forever =
+    recentInfo === undefined || recentInfo.list[ownProps.app_id] === undefined
+      ? -1
+      : recentInfo.list[ownProps.app_id].forever
 
   two_weeks = convertTime(two_weeks)
   forever = convertTime(forever)
@@ -64,6 +68,4 @@ const mapStateToProps = (state: State, ownProps: GameCardOwnProps): GameCardProp
   }
 }
 
-export default connect<GameCardProps, void, GameCardOwnProps>(
-  mapStateToProps,
-)(Container)
+export default connect<GameCardProps, void, GameCardOwnProps>(mapStateToProps)(Container)

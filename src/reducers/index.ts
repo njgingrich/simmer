@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   loadingProfile,
   profiles,
   recentGames,
-  recentGameIds
+  recentGameIds,
 })
 
 export default rootReducer

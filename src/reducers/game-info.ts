@@ -5,7 +5,7 @@ import {
   REQUEST_GAME_INFO,
 } from '../actions/game-info'
 
-export function loadingGameInfo (state = '570', action: any) {
+export function loadingGameInfo(state = '570', action: any) {
   switch (action.type) {
     case LOAD_GAME_INFO:
       return action.id
@@ -16,7 +16,7 @@ export function loadingGameInfo (state = '570', action: any) {
   }
 }
 
-function info (
+function info(
   state = {
     isFetching: false,
     didInvalidate: false,
@@ -26,8 +26,8 @@ function info (
     screenshots: [],
     last_updated: '',
   },
-  action: any) {
-
+  action: any
+) {
   switch (action.type) {
     case RELOAD_GAME_INFO:
       return Object.assign({}, state, {
@@ -53,13 +53,13 @@ function info (
   }
 }
 
-export function gameInfo (state = {}, action: any) {
+export function gameInfo(state = {}, action: any) {
   switch (action.type) {
     case RELOAD_GAME_INFO:
     case RECEIVE_GAME_INFO:
     case REQUEST_GAME_INFO:
       return Object.assign({}, state, {
-        [action.id]: info(state[action.id], action)
+        [action.id]: info(state[action.id], action),
       })
     default:
       return state

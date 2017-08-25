@@ -7,23 +7,25 @@ import Profile, { ProfileProps, ProfileOwnProps } from '../components/profile'
 import { State } from '../components/app'
 
 class Container extends React.Component<any, any> {
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch, id } = this.props
     dispatch(fetchProfile(id))
   }
 
-  render () {
+  render() {
     return (
-      <Profile isFetching={this.props.isFetching}
-               last_logoff={this.props.last_logoff}
-               name={this.props.name}
-               profile_url={this.props.profile_url}
-               avatar_url={this.props.avatar_url} />
+      <Profile
+        isFetching={this.props.isFetching}
+        last_logoff={this.props.last_logoff}
+        name={this.props.name}
+        profile_url={this.props.profile_url}
+        avatar_url={this.props.avatar_url}
+      />
     )
   }
 }
 
-function convertToDate (time: string) {
+function convertToDate(time: string) {
   return moment(time, 'X').fromNow()
 }
 
@@ -49,6 +51,4 @@ const mapStateToProps = (state: State, ownProps: ProfileOwnProps) => {
   }
 }
 
-export default connect<ProfileProps, void, ProfileOwnProps>(
-  mapStateToProps,
-)(Container)
+export default connect<ProfileProps, void, ProfileOwnProps>(mapStateToProps)(Container)

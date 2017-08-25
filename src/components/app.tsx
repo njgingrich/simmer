@@ -40,7 +40,7 @@ export interface RecentGame {
 }
 
 export default class App extends React.Component<AppProps, any> {
-  render () {
+  render() {
     return (
       <div className={'container'}>
         <div className={'card'}>

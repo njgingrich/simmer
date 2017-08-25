@@ -6,15 +6,13 @@ import GameList, { GameListProps, GameListOwnProps } from '../components/game-li
 import { State } from '../components/app'
 
 class Container extends React.Component<any, any> {
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch, id } = this.props
     dispatch(fetchGameList(id))
   }
 
-  render () {
-    return (
-      <GameList ids={this.props.ids} />
-    )
+  render() {
+    return <GameList ids={this.props.ids} />
   }
 }
 
@@ -24,14 +22,12 @@ const mapStateToProps = (state: State, ownProps: GameListOwnProps) => {
   ids = ids.map((id: any) => {
     return {
       app_id: id,
-      profile_id: ownProps.id
+      profile_id: ownProps.id,
     }
   })
   return {
-    ids
+    ids,
   }
 }
 
-export default connect<GameListProps, void, GameListOwnProps>(
-  mapStateToProps,
-)(Container)
+export default connect<GameListProps, void, GameListOwnProps>(mapStateToProps)(Container)

@@ -6,19 +6,20 @@ export const REQUEST_GAME_INFO = 'REQUEST_GAME_INFO'
 export const RECEIVE_GAME_INFO = 'RECEIVE_GAME_INFO'
 export const ERR_GAME_INFO = 'ERR_GAME_INFO'
 
-function loadGameInfo (id: string) {
+function loadGameInfo(id: string) {
   return { type: LOAD_GAME_INFO, id }
 }
 
-function reloadGameInfo (id: string) {
+function reloadGameInfo(id: string) {
   return { type: RELOAD_GAME_INFO, id }
 }
 
-function requestGameInfo (id: string) {
+function requestGameInfo(id: string) {
   return { type: REQUEST_GAME_INFO, id }
 }
 
-function receiveGameInfo (id: string, json: any) {
+function receiveGameInfo(id: string, json: any) {
+  json = json.result
   return {
     type: RECEIVE_GAME_INFO,
     id,
@@ -30,18 +31,15 @@ function receiveGameInfo (id: string, json: any) {
   }
 }
 
-function errGameInfo (id: string, err: string) {
+function errGameInfo(id: string, err: string) {
   return { type: ERR_GAME_INFO, id, err }
 }
 
-export function fetchGameInfo (id: string) {
+export function fetchGameInfo(id: string) {
   return (dispatch: any) => {
     dispatch(requestGameInfo(id))
     return fetch(`http://localhost:8003/games/${id}`)
       .then(response => response.json())
-      .then(
-        json => dispatch(receiveGameInfo(id, json)),
-        err => dispatch(errGameInfo(id, err))
-      )
+      .then(json => dispatch(receiveGameInfo(id, json)), err => dispatch(errGameInfo(id, err)))
   }
 }

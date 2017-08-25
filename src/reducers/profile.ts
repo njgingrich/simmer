@@ -1,11 +1,6 @@
-import {
-  LOAD_PROFILE,
-  RELOAD_PROFILE,
-  REQUEST_PROFILE,
-  RECEIVE_PROFILE
-} from '../actions/profile'
+import { LOAD_PROFILE, RELOAD_PROFILE, REQUEST_PROFILE, RECEIVE_PROFILE } from '../actions/profile'
 
-export function loadingProfile (state = '', action: any) {
+export function loadingProfile(state = '', action: any) {
   switch (action.type) {
     case LOAD_PROFILE:
       return action.id
@@ -16,7 +11,7 @@ export function loadingProfile (state = '', action: any) {
   }
 }
 
-function profile_info (
+function profile_info(
   state = {
     isFetching: false,
     didInvalidate: false,
@@ -25,8 +20,8 @@ function profile_info (
     avatar_url: '',
     last_updated: '',
   },
-  action: any) {
-
+  action: any
+) {
   switch (action.type) {
     case RELOAD_PROFILE:
       return Object.assign({}, state, {
@@ -51,13 +46,13 @@ function profile_info (
   }
 }
 
-export function profiles (state = {}, action: any) {
+export function profiles(state = {}, action: any) {
   switch (action.type) {
     case RELOAD_PROFILE:
     case RECEIVE_PROFILE:
     case REQUEST_PROFILE:
       return Object.assign({}, state, {
-        [action.id]: profile_info(state[action.id], action)
+        [action.id]: profile_info(state[action.id], action),
       })
     default:
       return state

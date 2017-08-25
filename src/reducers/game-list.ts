@@ -5,14 +5,14 @@ import {
   REQUEST_GAME_LIST,
 } from '../actions/game-list'
 
-function list (
+function list(
   state = {
     isFetching: false,
     didInvalidate: false,
-    list: []
+    list: [],
   },
-  action: any) {
-
+  action: any
+) {
   switch (action.type) {
     case RELOAD_GAME_LIST:
       return Object.assign({}, state, {
@@ -27,31 +27,31 @@ function list (
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        list: action.list
+        list: action.list,
       })
     default:
       return state
   }
 }
 
-export function recentGames (state = {}, action: any) {
+export function recentGames(state = {}, action: any) {
   switch (action.type) {
     case RELOAD_GAME_LIST:
     case RECEIVE_GAME_LIST:
     case REQUEST_GAME_LIST:
       return Object.assign({}, state, {
-        [action.id]: list(state[action.id], action)
+        [action.id]: list(state[action.id], action),
       })
     default:
       return state
   }
 }
 
-export function recentGameIds (state = [], action: any) {
+export function recentGameIds(state = [], action: any) {
   switch (action.type) {
     case RECEIVE_GAME_LIST:
       return Object.assign({}, state, {
-        list: action.game_ids
+        list: action.game_ids,
       })
     default:
       return state
